@@ -1,0 +1,57 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="./componente-suma.html">
+<link rel="import" href="./componente-resta.html">
+<link rel="import" href="./componente-multiplicacion.html">
+<link rel="import" href="./componente-division.html">
+<dom-module id="componente-operaciones">
+    <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Valores de componente padre: </h2>
+    <h2>- operador1 = [[operador1]] </h2>
+    <h2>- operador2 = [[operador2]]</h2>
+    <componente-suma operador1= {{operador1}}  operador2= {{operador2}}></componente-suma>
+    <componente-resta operador1= {{operador1}}  operador2= {{operador2}}></componente-resta>
+    <componente-multiplicacion operador1= {{operador1}}  operador2= {{operador2}}></componente-multiplicacion>
+    <componente-division operador1= {{operador1}}  operador2= {{operador2}}></componente-division>
+
+    
+  </template>
+
+    <script>
+        /**
+         * `componente-operaciones`
+         * operaciones basicas
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class ComponenteOperaciones extends Polymer.Element {
+            static get is() {
+                return 'componente-operaciones';
+            }
+            static get properties() {
+                return {
+                    operador1: {
+                        type: Number,
+                        value: 10,
+                        notify: true,
+                        reflectToAttribute: true
+                    },
+                    operador2: {
+                        type: Number,
+                        value: 2,
+                        notify: true,
+                        reflectToAttribute: true
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(ComponenteOperaciones.is, ComponenteOperaciones);
+    </script>
+</dom-module>

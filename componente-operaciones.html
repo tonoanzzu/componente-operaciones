@@ -3,6 +3,8 @@
 <link rel="import" href="./componente-resta.html">
 <link rel="import" href="./componente-multiplicacion.html">
 <link rel="import" href="./componente-division.html">
+
+
 <dom-module id="componente-operaciones">
     <template>
     <style>
@@ -13,11 +15,19 @@
     <h2>Valores de componente padre: </h2>
     <h2>- operador1 = [[operador1]] </h2>
     <h2>- operador2 = [[operador2]]</h2>
-    <componente-suma operador1= {{operador1}}  operador2= {{operador2}}></componente-suma>
-    <componente-resta operador1= {{operador1}}  operador2= {{operador2}}></componente-resta>
-    <componente-multiplicacion operador1= {{operador1}}  operador2= {{operador2}}></componente-multiplicacion>
-    <componente-division operador1= {{operador1}}  operador2= {{operador2}}></componente-division>
+    <h3>Suma: <br><br> [[operador1]] + [[operador2]] = [[resultadoSuma]] </h3>
+    <h3>Resta: <br><br> [[operador1]] - [[operador2]] = [[resultadoResta]] </h3>
+    <h3>Multiplicacion: <br><br> [[operador1]] * [[operador2]] = [[resultadoMultiplicacion]] </h3>
+    <h3>Division: <br><br> [[operador1]] / [[operador2]] = [[resultadoDivision]] </h3>
 
+
+    <componente-suma operador1 = '[[operador1]]' operador2= '[[operador2]]' resultado = '{{resultadoSuma}}'></componente-suma>
+    <componente-resta operador1 = '[[operador1]]' operador2= '[[operador2]]' resultado = '{{resultadoResta}}'></componente-resta>
+    <componente-multiplicacion operador1 = '[[operador1]]' operador2= '[[operador2]]' resultado = '{{resultadoMultiplicacion}}'></componente-multiplicacion>
+    <componente-division operador1 = '[[operador1]]' operador2= '[[operador2]]' resultado = '{{resultadoDivision}}'></componente-division>
+    
+    
+    <h2>total = [[total]]</h2>
     
   </template>
 
@@ -39,17 +49,41 @@
                     operador1: {
                         type: Number,
                         value: 10,
-                        notify: true,
                         reflectToAttribute: true
                     },
                     operador2: {
                         type: Number,
                         value: 2,
-                        notify: true,
                         reflectToAttribute: true
+                    },
+                    resultadoSuma: {
+                        type: Number
+                    },
+                    resultadoResta: {
+                        type: Number
+                    },
+                    resultadoMultiplicacion: {
+                        type: Number
+                    },
+                    resultadoDivision: {
+                        type: Number
+                    },
+                    total: {
+                        type: Number
                     }
+
                 };
             }
+
+            static get observers() {
+                return ['_observaTotal(resultadoSuma, resultadoResta, resultadoMultiplicacion, resultadoDivision)']
+            }
+
+            _observaTotal(resultadoSuma, resultadoResta, resultadoMultiplicacion, resultadoDivision) {
+
+                this.total = (resultadoSuma + resultadoResta + resultadoMultiplicacion + resultadoDivision);
+            }
+
         }
 
         window.customElements.define(ComponenteOperaciones.is, ComponenteOperaciones);

@@ -7,7 +7,7 @@
         display: block;
       }
     </style>
-    <h2>Valor de resta {{resta}}</h2>
+    
   </template>
 
     <script>
@@ -25,15 +25,21 @@
             }
             static get properties() {
                 return {
-                    resta: {
+                    operador1: {
+                        type: Number
+                    },
+                    operador2: {
+                        type: Number
+                    },
+                    resultado: {
                         type: Number,
-                        computed: '_getresta(operador1, operador2)',
-                        readOnly: true
+                        computed: '_getResta(operador1, operador2)',
+                        notify: true
                     }
                 };
             }
 
-            _getresta(operador1, operador2) {
+            _getResta(operador1, operador2) {
                 return operador1 - operador2;
             }
 

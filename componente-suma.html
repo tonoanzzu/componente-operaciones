@@ -7,7 +7,7 @@
         display: block;
       }
     </style>
-    <h2>Valor de suma {{suma}}</h2>
+    
   </template>
 
     <script>
@@ -25,10 +25,16 @@
             }
             static get properties() {
                 return {
-                    suma: {
+                    operador1: {
+                        type: Number
+                    },
+                    operador2: {
+                        type: Number
+                    },
+                    resultado: {
                         type: Number,
                         computed: '_getSuma(operador1, operador2)',
-                        readOnly: true
+                        notify: true
                     }
                 };
             }

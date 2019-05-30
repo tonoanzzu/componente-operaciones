@@ -7,7 +7,7 @@
         display: block;
       }
     </style>
-    <h2>Valor de multiplicacion {{multiplicacion}}</h2>
+    
   </template>
 
     <script>
@@ -25,10 +25,16 @@
             }
             static get properties() {
                 return {
-                    multiplicacion: {
+                    operador1: {
+                        type: Number
+                    },
+                    operador2: {
+                        type: Number
+                    },
+                    resultado: {
                         type: Number,
                         computed: '_getMultiplicacion(operador1, operador2)',
-                        readOnly: true
+                        notify: true
                     }
                 };
             }
